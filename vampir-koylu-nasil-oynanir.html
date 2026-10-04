@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vampir Köylü nasıl oynanır? Roller, gece akışı ve oylama</title>
+<meta name="description" content="Vampir Köylü (Kurt Adam / Werewolf) oyununu anlatıcısız oynamak için rehber: roller, bir gecenin akışı, doktor ve gözcü kuralları, oylama ve kazanma şartı. Oyuncu sayısına göre rol dağılımı hesaplayıcısı.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#120D14">
+<link rel="canonical" href="https://ibrahimbilgic.github.io/koy-gecesi/vampir-koylu-nasil-oynanir.html">
+<link rel="alternate" hreflang="tr" href="https://ibrahimbilgic.github.io/koy-gecesi/vampir-koylu-nasil-oynanir.html">
+<link rel="alternate" hreflang="en" href="https://ibrahimbilgic.github.io/koy-gecesi/werewolf-party-game-rules.html">
+<link rel="stylesheet" href="style.css">
+<style>
+main{max-width:46rem}
+.hero{font-size:1.1rem;color:var(--metin);margin:0 0 1.6rem}
+.roller{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.75rem;margin:0 0 1.5rem;padding:0;list-style:none}
+.roller li{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;padding:.9rem 1rem;margin:0}
+.roller b{display:block;color:var(--metin);font-size:1.05rem;margin-bottom:.15rem}
+.roller .tk{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vurgu)}
+.roller .tk.v{color:#FF8A80}
+.roller p{margin:.3rem 0 0;font-size:.95rem}
+ol.gece{list-style:none;counter-reset:s;padding:0;margin:0 0 1rem}
+ol.gece>li{counter-increment:s;position:relative;background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;padding:.85rem 1rem .85rem 3.4rem;margin:0 0 .6rem}
+ol.gece>li::before{content:counter(s);position:absolute;left:.9rem;top:.8rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--vurgu);color:var(--vurgu-ustu);font-weight:800;display:flex;align-items:center;justify-content:center}
+ol.gece>li strong{display:block}
+.arac{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;padding:1rem 1.1rem;margin:0 0 1.2rem}
+.arac label{display:flex;align-items:center;gap:.7rem;color:var(--metin);font-weight:600;flex-wrap:wrap}
+.arac input{font:600 1.1rem var(--sans);width:5.5rem;padding:.5rem .6rem;color:var(--metin);background:var(--yuzey);border:1px solid var(--cizgi);border-radius:10px;min-height:44px}
+.arac ul{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:.9rem 0 .2rem}
+.arac ul li{margin:0;background:var(--yuzey);border-radius:10px;padding:.4rem .75rem;color:var(--soluk)}
+.arac ul li b{color:var(--vurgu);font-size:1.15rem;margin-right:.3rem}
+details{border-top:1px solid var(--cizgi);padding:.6rem 0}
+summary{cursor:pointer;font-weight:700;color:var(--metin)}
+details p{margin:.5rem 0 .2rem}
+.cta{display:inline-block;background:var(--vurgu);color:var(--vurgu-ustu);font-weight:700;padding:.75rem 1.1rem;border-radius:10px;text-decoration:none;min-height:44px}
+.dilsw{margin-left:auto;font-size:.9rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Vampir Köylü ile Kurt Adam aynı oyun mu?","acceptedAnswer":{"@type":"Answer","text":"Mekanik aynıdır; yalnızca tema değişir. Türkiye'de oyun genellikle Vampir Köylü adıyla, dünyada Werewolf adıyla bilinir. Köy Gecesi uygulamasında tema ayardan değiştirilebilir."}},{"@type":"Question","name":"Kaç kişiyle oynanır?","acceptedAnswer":{"@type":"Answer","text":"Köy Gecesi'nde 4 ile 20 oyuncuyla. Dört kişide oyun hızlı ve basittir; 6 ve üzeri daha rahat tartışma sağlar."}},{"@type":"Question","name":"Anlatıcı olmadan oynanır mı?","acceptedAnswer":{"@type":"Answer","text":"Evet. Gizli faz telefonun elden ele dolaşmasıyla yürür; uygulama gece adımlarını sesli okur ve ses kapatılabilir."}},{"@type":"Question","name":"Doktor kendini koruyabilir mi?","acceptedAnswer":{"@type":"Answer","text":"Varsayılan kurallarda evet, ama üst üste iki gece aynı kişiyi koruyamaz. Her iki kural da oyun ayarlarından değiştirilebilir."}},{"@type":"Question","name":"Avcı nasıl çalışır?","acceptedAnswer":{"@type":"Answer","text":"Avcı gece öldürülürse ya da gündüz köyden gönderilirse hemen birini seçip götürür. Bu atış, oyunun bitip bitmediği kontrol edilmeden önce gerçekleşir."}}]}</script>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="support.html">Köy Gecesi</a><a class="dilsw" href="werewolf-party-game-rules.html" hreflang="en" lang="en">English</a></div></header>
+<main>
+<h1>Vampir Köylü nasıl oynanır?</h1>
+<p class="hero lead">Köylüler ile içlerine karışmış vampirler arasındaki saklı rol oyunu; Kurt Adam ya da Werewolf adıyla da bilinir. Bu sayfa oyunu bir arkadaş grubunda, ayrı bir anlatıcı olmadan nasıl kuracağını ve bir gecenin sırasını anlatır.</p>
+<div class="ozet"><p>Kısaca: herkes gizli bir rol alır. Gece vampirler birini öldürür, gündüz herkes tartışıp birini köyden gönderir. Tüm vampirler gidince köy, vampirler köylülerin sayısına yetişince vampirler kazanır. Anlatılan düzen, Köy Gecesi uygulamasının kullandığı kurallardır.</p></div>
+<h2>Roller</h2>
+<ul class="roller">
+    <li><span class="tk v">Vampir takımı</span><b>Vampir</b><p>Her gece köyden birini seçip öldürür. Vampirler birbirini tanır. Tema olarak "Kurt adam" da seçilebilir; kurallar aynıdır.</p></li>
+    <li><span class="tk">Köy takımı</span><b>Köylü</b><p>Özel gücü yoktur; gündüz tartışarak ve oy vererek vampirleri bulmaya çalışır.</p></li>
+    <li><span class="tk">Köy takımı</span><b>Doktor</b><p>Her gece bir kişiyi korur. Vampirlerin seçtiği kişiyle aynıysa o gece kimse ölmez.</p></li>
+    <li><span class="tk">Köy takımı</span><b>Gözcü</b><p>Her gece bir kişinin hangi takımdan olduğuna (köy ya da vampir) bakar. Sonucu yalnızca kendisi görür.</p></li>
+    <li><span class="tk">Köy takımı</span><b>Avcı</b><p>Öldürülür ya da köyden gönderilirse hemen birini yanında götürür.</p></li>
+  </ul>
+<h2>Kaç kişiyle, hangi roller?</h2>
+<p>Oyun 4 ile 20 oyuncu arasında oynanır. Köy oranını yaklaşık yarıya yakın tutan dengeli dağılım aşağıdaki gibidir; kalan herkes köylüdür:</p>
+   <div class="arac"><label for="n">Oyuncu sayısı <input id="n" type="number" min="4" max="20" value="8" inputmode="numeric"></label><ul id="dag" aria-live="polite"></ul><p id="dagnot" style="margin:.6rem 0 0"></p></div>
+   <div class="tablo"><table><thead><tr><th>Oyuncu</th><th>Vampir</th><th>Doktor</th><th>Gözcü</th><th>Avcı</th></tr></thead><tbody>
+    <tr><td>4</td><td>1</td><td>1</td><td>1</td><td>yok</td></tr><tr><td>5</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>6 - 10</td><td>1</td><td>1</td><td>1</td><td>yok</td></tr><tr><td>11 - 20</td><td>2</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div>
+   <p>Doktor, gözcü ve avcıdan en fazla birer tane olur. Vampirler baştan köydekilerin sayısına eşit ya da fazlaysa oyun başlamaz.</p>
+<h2>Bir gece nasıl geçer?</h2>
+<p>Anlatıcı yoksa en zor kısım, kimin ne zaman uyanacağını gizli tutmaktır. Telefonla oynarken bu şöyle işler:</p>
+   <ol class="gece">
+    <li><strong>Roller dağıtılır.</strong>Roller rastgele karıştırılır; telefon elden ele dolaşır, herkes kendi rolünü gizlice görür. Vampirler takım arkadaşlarını da görür.</li>
+    <li><strong>Gece başlar: vampirler.</strong>Vampirler bir köylüyü (vampir olmayan birini) seçer.</li>
+    <li><strong>Doktor.</strong>Doktor bir kişiyi korur. Varsayılan kurallarda doktor kendini koruyabilir ama üst üste iki gece aynı kişiyi koruyamaz.</li>
+    <li><strong>Gözcü.</strong>Gözcü bir kişiye bakar ve onun "köyden" mi "vampir" mi olduğunu yalnızca kendi ekranında görür.</li>
+    <li><strong>Sabah.</strong>Vampirlerin seçtiği kişi doktorun korudukları arasında değilse köyden ayrılır; korunduysa kimse ölmez ve bu duyurulur. Ölen avcıysa hemen birini yanında götürür.</li>
+    <li><strong>Tartışma.</strong>Herkes şüphelerini konuşur. Süre ayarlanabilir; varsayılan 3 dakikadır (30 saniye ile 15 dakika arası).</li>
+    <li><strong>Oylama.</strong>Her oyuncu bir kişiyi işaret eder. En çok oyu alan köyden gönderilir. Oylar eşitse varsayılan olarak yalnızca eşit kalanlar arasında bir kez daha oylanır; yine eşitse kimse gönderilmez.</li>
+    <li><strong>Yeni gece.</strong>Kazanan çıkmadıysa oyun yeni geceyle sürer.</li>
+   </ol>
+   <p>Telefon gece boyunca sırayla tüm canlı oyunculardan geçer; rolü o adımla ilgili olmayanlar oyalama ekranı görür. Böylece kimin seçim yaptığı yan taraftan anlaşılmaz.</p>
+<h2>Kim kazanır?</h2>
+<p><strong>Köy</strong>, hayattaki son vampir de oyundan çıkınca kazanır. <strong>Vampirler</strong>, hayattaki vampir sayısı hayattaki diğer oyuncuların sayısına eşit ya da fazla olduğunda kazanır. Her ölümden sonra bu kontrol yapılır; avcının son atışı kazanan belirlenmeden önce gerçekleşir.</p>
+   <p>Köyden gönderilen oyuncunun rolünün açıklanıp açıklanmayacağı bir ayardır; varsayılanı açıklanmasıdır.</p>
+<h2>Üç ipucu</h2>
+<ul><li><strong>Gözcüysen</strong> bilgiyi hemen yakma: net bir vampir bulduysan bile, nasıl bildiğini açıklamadan ikna etmeye çalışmak seni bir sonraki gece hedef yapabilir.</li><li><strong>Vampirsen</strong> her gece en tehlikeli köylüyü değil, en az dikkat çeken ama sesi güvenilen kişiyi düşün; sıradan bir ölüm daha az soru doğurur.</li><li><strong>Doktorsan</strong> kendini her gece korumak yerine açığa çıkmış gözcüyü korumak çoğu zaman daha değerlidir. Üst üste aynı kişiyi koruyamayacağını da hesaba kat.</li></ul>
+<h2>Sık sorulan sorular</h2>
+<details><summary>Vampir Köylü ile Kurt Adam aynı oyun mu?</summary><p>Mekanik aynıdır; yalnızca tema değişir. Türkiye'de oyun genellikle Vampir Köylü adıyla, dünyada Werewolf adıyla bilinir. Köy Gecesi uygulamasında tema ayardan değiştirilebilir.</p></details>
+<details><summary>Kaç kişiyle oynanır?</summary><p>Köy Gecesi'nde 4 ile 20 oyuncuyla. Dört kişide oyun hızlı ve basittir; 6 ve üzeri daha rahat tartışma sağlar.</p></details>
+<details><summary>Anlatıcı olmadan oynanır mı?</summary><p>Evet. Gizli faz telefonun elden ele dolaşmasıyla yürür; uygulama gece adımlarını sesli okur ve ses kapatılabilir.</p></details>
+<details><summary>Doktor kendini koruyabilir mi?</summary><p>Varsayılan kurallarda evet, ama üst üste iki gece aynı kişiyi koruyamaz. Her iki kural da oyun ayarlarından değiştirilebilir.</p></details>
+<details><summary>Avcı nasıl çalışır?</summary><p>Avcı gece öldürülürse ya da gündüz köyden gönderilirse hemen birini seçip götürür. Bu atış, oyunun bitip bitmediği kontrol edilmeden önce gerçekleşir.</p></details>
+<h2>Bunu telefonla oynamak istersen</h2>
+<p>Köy Gecesi, yukarıdaki kuralları uygulayan, tek telefonla ve internetsiz oynanan bir parti oyunu uygulaması: rol dağıtımı, sesli anlatıcı, gece sırası, tartışma sayacı, oylama ve kazanan kontrolü hazır gelir. Vampir Köylü dışında "Casus Kim" modu da var. Oyunda reklam gösterilir. Google Play'de.</p>
+<p><a class="cta" href="https://play.google.com/store/apps/details?id=com.appfellas.koygecesi&referrer=utm_source%3Dweb%26utm_medium%3Drules_page%26utm_campaign%3Dorganic">Google Play'de aç</a></p>
+</main>
+<footer><p><a href="support.html">Destek</a> · <a href="privacy.html">Gizlilik</a> · AppFellas 2026</p></footer>
+<script>
+// Mirrors KoyGecesi src/core/roller.ts: DENGE_TABLOSU + dengeliSet
+var DENGE=[[4,4,1,1,1,0],[5,5,1,1,1,1],[6,10,1,1,1,0],[11,20,2,1,1,1]];
+function dengeliSet(n){
+  n=Math.max(0,Math.trunc(n));var f=DENGE[0],l=DENGE[DENGE.length-1];
+  var s=n<f[0]?f:n>l[1]?l:(DENGE.find(function(x){return n>=x[0]&&n<=x[1];})||l);
+  var ozel=s[2]+s[3]+s[4]+s[5];
+  return {vampir:s[2],koylu:Math.max(0,n-ozel),doktor:s[3],gozcu:s[4],avci:s[5]};
+}
+if(typeof module!=='undefined')module.exports={dengeliSet:dengeliSet};
+
+(function(){
+  var N={"vampir":"vampir","koylu":"köylü","doktor":"doktor","gozcu":"gözcü","avci":"avcı"},tr=true;
+  var inp=document.getElementById('n'),ul=document.getElementById('dag');
+  function g(){
+    var n=parseInt(inp.value,10);
+    if(isNaN(n)||n<4||n>20){ul.innerHTML='<li>'+(tr?'4 ile 20 arasında bir sayı yaz.':'Enter a number from 4 to 20.')+'</li>';return;}
+    var s=dengeliSet(n),h='';
+    ['vampir','koylu','doktor','gozcu','avci'].forEach(function(r){if(s[r]>0)h+='<li><b>'+s[r]+'</b>'+N[r]+'</li>';});
+    ul.innerHTML=h;
+  }
+  inp.addEventListener('input',g);g();
+})();
+</script>
+</body>
+</html>

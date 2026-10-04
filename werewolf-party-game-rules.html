@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Werewolf party game: roles, how a night works and how to win</title>
+<meta name="description" content="How to play the Werewolf (Mafia-style) party game without a narrator: roles, the order of a night, healer and seer rules, voting and win conditions, plus a role-split calculator for 4 to 20 players.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#120D14">
+<link rel="canonical" href="https://ibrahimbilgic.github.io/koy-gecesi/werewolf-party-game-rules.html">
+<link rel="alternate" hreflang="en" href="https://ibrahimbilgic.github.io/koy-gecesi/werewolf-party-game-rules.html">
+<link rel="alternate" hreflang="tr" href="https://ibrahimbilgic.github.io/koy-gecesi/vampir-koylu-nasil-oynanir.html">
+<link rel="stylesheet" href="style.css">
+<style>
+main{max-width:46rem}
+.hero{font-size:1.1rem;color:var(--metin);margin:0 0 1.6rem}
+.roller{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.75rem;margin:0 0 1.5rem;padding:0;list-style:none}
+.roller li{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;padding:.9rem 1rem;margin:0}
+.roller b{display:block;color:var(--metin);font-size:1.05rem;margin-bottom:.15rem}
+.roller .tk{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vurgu)}
+.roller .tk.v{color:#FF8A80}
+.roller p{margin:.3rem 0 0;font-size:.95rem}
+ol.gece{list-style:none;counter-reset:s;padding:0;margin:0 0 1rem}
+ol.gece>li{counter-increment:s;position:relative;background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;padding:.85rem 1rem .85rem 3.4rem;margin:0 0 .6rem}
+ol.gece>li::before{content:counter(s);position:absolute;left:.9rem;top:.8rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--vurgu);color:var(--vurgu-ustu);font-weight:800;display:flex;align-items:center;justify-content:center}
+ol.gece>li strong{display:block}
+.arac{background:var(--kart);border:1px solid var(--cizgi);border-radius:14px;padding:1rem 1.1rem;margin:0 0 1.2rem}
+.arac label{display:flex;align-items:center;gap:.7rem;color:var(--metin);font-weight:600;flex-wrap:wrap}
+.arac input{font:600 1.1rem var(--sans);width:5.5rem;padding:.5rem .6rem;color:var(--metin);background:var(--yuzey);border:1px solid var(--cizgi);border-radius:10px;min-height:44px}
+.arac ul{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:.9rem 0 .2rem}
+.arac ul li{margin:0;background:var(--yuzey);border-radius:10px;padding:.4rem .75rem;color:var(--soluk)}
+.arac ul li b{color:var(--vurgu);font-size:1.15rem;margin-right:.3rem}
+details{border-top:1px solid var(--cizgi);padding:.6rem 0}
+summary{cursor:pointer;font-weight:700;color:var(--metin)}
+details p{margin:.5rem 0 .2rem}
+.cta{display:inline-block;background:var(--vurgu);color:var(--vurgu-ustu);font-weight:700;padding:.75rem 1.1rem;border-radius:10px;text-decoration:none;min-height:44px}
+.dilsw{margin-left:auto;font-size:.9rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Werewolf the same as Mafia?","acceptedAnswer":{"@type":"Answer","text":"They are close relatives: hidden roles, a night phase where the minority eliminates someone, and a day vote. This page covers the werewolf version with a healer, a seer and a hunter."}},{"@type":"Question","name":"How many players do you need?","acceptedAnswer":{"@type":"Answer","text":"The Village at Night app supports 4 to 20 players. Four is quick and simple; six or more gives the discussion room to breathe."}},{"@type":"Question","name":"Can you play without a narrator?","acceptedAnswer":{"@type":"Answer","text":"Yes. The secret phase runs by passing one phone hand to hand, and the app reads the night steps aloud; the voice can be turned off."}},{"@type":"Question","name":"Can the healer protect themselves?","acceptedAnswer":{"@type":"Answer","text":"With the default rules, yes, but not the same person two nights in a row. Both rules can be changed in the game settings."}},{"@type":"Question","name":"How does the hunter work?","acceptedAnswer":{"@type":"Answer","text":"If the hunter is eliminated at night or sent away by vote, they immediately pick one person to take along. The shot happens before the game checks whether it is over."}}]}</script>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="support.html">Village at Night</a><a class="dilsw" href="vampir-koylu-nasil-oynanir.html" hreflang="tr" lang="tr">Türkçe</a></div></header>
+<main>
+<h1>How to play the Werewolf party game</h1>
+<p class="hero lead">A hidden-role game: a few werewolves are hiding among the villagers. This page explains the roles, the order of a night and how to run the game in a friend group with no separate narrator, using the rules of the Village at Night app.</p>
+<div class="ozet"><p>In short: everyone gets a secret role. At night the werewolves pick a victim; by day everybody argues and votes someone out. The village wins when every werewolf is gone, the werewolves win when they are as many as everyone else.</p></div>
+<h2>Roles</h2>
+<ul class="roller">
+    <li><span class="tk v">Werewolf team</span><b>Werewolf</b><p>Each night picks one villager to eliminate. Werewolves know each other. The app also offers a vampire theme; the rules are the same.</p></li>
+    <li><span class="tk">Village team</span><b>Villager</b><p>No special power; finds the werewolves by discussing and voting during the day.</p></li>
+    <li><span class="tk">Village team</span><b>Healer</b><p>Protects one person each night. If that is the person the werewolves chose, nobody dies that night.</p></li>
+    <li><span class="tk">Village team</span><b>Seer</b><p>Each night checks one person and learns whether they are on the village or the werewolf team. Only the seer sees the answer.</p></li>
+    <li><span class="tk">Village team</span><b>Hunter</b><p>If eliminated, at night or by vote, immediately takes one person along.</p></li>
+  </ul>
+<h2>How many of each role?</h2>
+<p>The game works for 4 to 20 players. The balanced split below keeps the sides close to even; everyone else is a villager:</p>
+   <div class="arac"><label for="n">Players <input id="n" type="number" min="4" max="20" value="8" inputmode="numeric"></label><ul id="dag" aria-live="polite"></ul></div>
+   <div class="tablo"><table><thead><tr><th>Players</th><th>Werewolves</th><th>Healer</th><th>Seer</th><th>Hunter</th></tr></thead><tbody>
+    <tr><td>4</td><td>1</td><td>1</td><td>1</td><td>none</td></tr><tr><td>5</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>6 - 10</td><td>1</td><td>1</td><td>1</td><td>none</td></tr><tr><td>11 - 20</td><td>2</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div>
+   <p>There is at most one healer, one seer and one hunter. The game will not start with no werewolf, or when the werewolves already equal or outnumber everyone else.</p>
+<h2>How a night plays out</h2>
+<p>Without a narrator the hard part is keeping the night secret. Played on a phone it works like this:</p>
+   <ol class="gece">
+    <li><strong>Deal the roles.</strong>Roles are shuffled at random; the phone goes hand to hand and each player sees their own role in private. Werewolves also see their teammates.</li>
+    <li><strong>Night starts: werewolves.</strong>The werewolves pick one non-werewolf.</li>
+    <li><strong>Healer.</strong>The healer protects one person. With the default rules the healer may protect themselves, but not the same person two nights in a row.</li>
+    <li><strong>Seer.</strong>The seer checks one person and sees "village" or "werewolf" on their own screen only.</li>
+    <li><strong>Morning.</strong>Unless the healer protected the chosen person, that person is out. If the target was protected, nobody dies and that is announced. A dead hunter immediately takes one person along.</li>
+    <li><strong>Discussion.</strong>Everyone shares suspicions. The timer is adjustable, 3 minutes by default (30 seconds to 15 minutes).</li>
+    <li><strong>Vote.</strong>Whoever gets the most votes is sent away. On a tie, by default only the tied players are voted on once more; if it ties again nobody is sent away.</li>
+    <li><strong>New night.</strong>If nobody has won yet, the next night begins.</li>
+   </ol>
+   <p>During the night the phone passes through every living player in turn; players whose role is not involved in that step see a decoy screen, so nobody can tell who is making a choice.</p>
+<h2>Who wins?</h2>
+<p><strong>The village</strong> wins when the last werewolf is out. <strong>The werewolves</strong> win when the number of living werewolves is equal to or greater than the number of other living players. This is checked after every elimination, and a hunter's final shot happens before the winner is decided.</p>
+   <p>Whether the eliminated player's role is revealed is a setting; by default it is revealed.</p>
+<h2>Three tips</h2>
+<ul><li><strong>As the seer</strong>, do not burn your information too early. Pushing a hard case without being able to say how you know can make you the next target.</li><li><strong>As a werewolf</strong>, the most dangerous villager is not always the best target. An unremarkable elimination raises fewer questions than a loud one.</li><li><strong>As the healer</strong>, protecting a seer who has revealed themselves is often worth more than protecting yourself every night. Remember you cannot protect the same person twice in a row.</li></ul>
+<h2>Frequently asked questions</h2>
+<details><summary>Is Werewolf the same as Mafia?</summary><p>They are close relatives: hidden roles, a night phase where the minority eliminates someone, and a day vote. This page covers the werewolf version with a healer, a seer and a hunter.</p></details>
+<details><summary>How many players do you need?</summary><p>The Village at Night app supports 4 to 20 players. Four is quick and simple; six or more gives the discussion room to breathe.</p></details>
+<details><summary>Can you play without a narrator?</summary><p>Yes. The secret phase runs by passing one phone hand to hand, and the app reads the night steps aloud; the voice can be turned off.</p></details>
+<details><summary>Can the healer protect themselves?</summary><p>With the default rules, yes, but not the same person two nights in a row. Both rules can be changed in the game settings.</p></details>
+<details><summary>How does the hunter work?</summary><p>If the hunter is eliminated at night or sent away by vote, they immediately pick one person to take along. The shot happens before the game checks whether it is over.</p></details>
+<h2>If you would rather play it on a phone</h2>
+<p>Village at Night is a party game app built on the rules above: one phone, no internet needed. Role dealing, a voiced narrator, the night order, a discussion timer, voting and the win check come ready. Besides the werewolf game it has a "Spy" mode. The game shows ads. It is on Google Play.</p>
+<p><a class="cta" href="https://play.google.com/store/apps/details?id=com.appfellas.koygecesi&referrer=utm_source%3Dweb%26utm_medium%3Drules_page%26utm_campaign%3Dorganic">Open on Google Play</a></p>
+</main>
+<footer><p><a href="support.html">Support</a> · <a href="privacy.html">Privacy</a> · AppFellas 2026</p></footer>
+<script>
+// Mirrors KoyGecesi src/core/roller.ts: DENGE_TABLOSU + dengeliSet
+var DENGE=[[4,4,1,1,1,0],[5,5,1,1,1,1],[6,10,1,1,1,0],[11,20,2,1,1,1]];
+function dengeliSet(n){
+  n=Math.max(0,Math.trunc(n));var f=DENGE[0],l=DENGE[DENGE.length-1];
+  var s=n<f[0]?f:n>l[1]?l:(DENGE.find(function(x){return n>=x[0]&&n<=x[1];})||l);
+  var ozel=s[2]+s[3]+s[4]+s[5];
+  return {vampir:s[2],koylu:Math.max(0,n-ozel),doktor:s[3],gozcu:s[4],avci:s[5]};
+}
+if(typeof module!=='undefined')module.exports={dengeliSet:dengeliSet};
+
+(function(){
+  var N={"vampir":"werewolf","koylu":"villager","doktor":"healer","gozcu":"seer","avci":"hunter"},tr=false;
+  var inp=document.getElementById('n'),ul=document.getElementById('dag');
+  function g(){
+    var n=parseInt(inp.value,10);
+    if(isNaN(n)||n<4||n>20){ul.innerHTML='<li>'+(tr?'4 ile 20 arasında bir sayı yaz.':'Enter a number from 4 to 20.')+'</li>';return;}
+    var s=dengeliSet(n),h='';
+    ['vampir','koylu','doktor','gozcu','avci'].forEach(function(r){if(s[r]>0)h+='<li><b>'+s[r]+'</b>'+N[r]+'</li>';});
+    ul.innerHTML=h;
+  }
+  inp.addEventListener('input',g);g();
+})();
+</script>
+</body>
+</html>
